@@ -184,23 +184,28 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      font-size: 1.08rem;
+      font-size: 0.9rem;
+    }
+    .contact-card .contact-header {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 8px;
     }
     .contact-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin: 4px 0;
+      gap: 8px;
+      margin: 2px 0;
+      font-size: 0.9rem;
     }
     .contact-row i {
       color: #6a3093;
-      font-size: 10px;
-      min-width: 22px;
+      font-size: 1.1rem;
+      min-width: 18px;
     }
     .contact-row a {
       color: #3e1863;
       text-decoration: none;
-      font-size:10px;
       font-weight: 600;
       transition: color 0.2s;
     }
@@ -224,7 +229,19 @@
         padding: 18px 6px 18px 6px;
       }
       .contact-card {
-        padding: 14px 8px;
+        padding: 16px 12px;
+        font-size: 0.85rem;
+      }
+      .contact-card .contact-header {
+        font-size: 0.95rem;
+      }
+      .contact-row {
+        font-size: 0.85rem;
+        gap: 6px;
+      }
+      .contact-row i {
+        font-size: 1rem;
+        min-width: 16px;
       }
     }
     .ssc-ticker {
@@ -323,6 +340,173 @@
         right: 20px;
         left: 20px;
       }
+    }
+
+    /* Add these new styles for the results popup */
+    .results-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #6a3093;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .results-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .results-popup {
+      position: fixed;
+      bottom: 90px;
+      left: 20px;
+      width: 350px;
+      background: rgba(255,255,255,0.98);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      z-index: 999;
+      transform: translateY(150%);
+      transition: transform 0.3s ease;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 2px solid #6a3093;
+    }
+
+    .results-popup.active {
+      transform: translateY(0);
+    }
+
+    .results-popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #6a3093;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .results-popup .close-btn:hover {
+      color: #3e1863;
+    }
+
+    .selected-candidates {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .selected-candidates li {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+      color: #3e1863;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .selected-candidates li:last-child {
+      border-bottom: none;
+    }
+
+    .selected-candidates li i {
+      color: #6a3093;
+    }
+
+    @media (max-width: 400px) {
+      .results-popup {
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+      }
+    }
+
+    /* Update the media queries and popup styles */
+    @media (max-width: 768px) {
+      .live-updates-popup,
+      .results-popup {
+        width: calc(100% - 30px);
+        left: 15px;
+        right: 15px;
+        max-width: none;
+      }
+
+      .live-updates-toggle,
+      .results-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+      }
+
+      .live-updates-toggle {
+        right: 15px;
+        bottom: 15px;
+      }
+
+      .results-toggle {
+        left: 15px;
+        bottom: 15px;
+      }
+
+      .live-updates-popup.active {
+        bottom: 75px;
+      }
+
+      .results-popup.active {
+        bottom: 75px;
+      }
+
+      /* Prevent body scroll when popup is active */
+      body.popup-active {
+        overflow: hidden;
+      }
+    }
+
+    /* Update popup styles for better mobile display */
+    .live-updates-popup,
+    .results-popup {
+      max-width: 350px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    /* Add backdrop when popup is active */
+    .popup-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .popup-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Ensure popups are above backdrop */
+    .live-updates-popup,
+    .results-popup {
+      z-index: 999;
     }
   </style>
 </head>
@@ -427,10 +611,22 @@
       <i class="fa-solid fa-hourglass-end"></i> Deadline: May 25, 2025
     </div>
     <div class="contact-card" id="contact">
-      <div style="font-weight:700; font-size:15px; margin-bottom:8px;">For more information and details:</div>
-      <div class="contact-row"><i class="fab fa-instagram"></i> Instagram: <a href="#">studentservicecommunity</a></div>
-      <div class="contact-row"><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:studentservicecommunity@gmail.com">studentservicecommunity@gmail.com</a></div>
-      <div class="contact-row"><i class="fa-solid fa-phone"></i> Phone: <a href="tel:+917569399294">+91 7569399294</a></div>
+      <div class="contact-header">For more information and details:</div>
+      <div class="contact-row">
+        <i class="fab fa-instagram"></i>
+        <span>Instagram:</span>
+        <a href="#">studentservicecommunity</a>
+      </div>
+      <div class="contact-row">
+        <i class="fa-solid fa-envelope"></i>
+        <span>Email:</span>
+        <a href="mailto:studentservicecommunity@gmail.com">studentservicecommunity@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <i class="fa-solid fa-phone"></i>
+        <span>Phone:</span>
+        <a href="tel:+917569399294">+91 7569399294</a>
+      </div>
     </div>
   </div>
   <!-- Additional Benefits Section -->
@@ -480,17 +676,109 @@
     </div>
   </div>
 
+  <!-- Add the results toggle button and popup -->
+  <button class="results-toggle" onclick="toggleResults()">
+    <i class="fa-solid fa-trophy"></i>
+  </button>
+
+  <div class="results-popup" id="resultsPopup">
+    <button class="close-btn" onclick="toggleResults()">
+      <i class="fa-solid fa-times"></i>
+    </button>
+    <div style="padding: 20px;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+        <i class="fa-solid fa-trophy" style="color: #6a3093; font-size: 1.8rem;"></i>
+        <h3 style="margin: 0; color: #6a3093; font-size: 1.2rem;">Phase-1 Results - Selected Candidates</h3>
+      </div>
+      
+      <div style="color: #3e1863;">
+        <p style="margin: 0 0 15px 0; font-weight: 600;">Congratulations to the following candidates selected for Phase 2:</p>
+        <ul class="selected-candidates">
+          <li><i class="fa-solid fa-user-check"></i> Garuga Sravan Revanth</li>
+          <li><i class="fa-solid fa-user-check"></i> Gopi Reddy Greeshma</li>
+          <li><i class="fa-solid fa-user-check"></i> Sirisha Penky</li>
+          <li><i class="fa-solid fa-user-check"></i> Morampudi Vamsi Tarun</li>
+          <li><i class="fa-solid fa-user-check"></i> Ananda Lakshmi Akula</li>
+          <li><i class="fa-solid fa-user-check"></i> Hari Priya Badduri</li>
+          <li><i class="fa-solid fa-user-check"></i> Busharaths</li>
+          <li><i class="fa-solid fa-user-check"></i> Harsha Priya Vardhani</li>
+          <li><i class="fa-solid fa-user-check"></i> Yoshitha</li>
+          <li><i class="fa-solid fa-user-check"></i> Narla Bhargavi</li>
+          <li><i class="fa-solid fa-user-check"></i> Lasya Mandadapu</li>
+        </ul>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #f8f4ff; border-radius: 8px;">
+          <p style="margin: 0; color: #6a3093; font-weight: 600;">
+            <i class="fa-solid fa-star"></i> Selected candidates will receive further details about Phase 2 via email.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add backdrop div -->
+  <div class="popup-backdrop" id="popupBackdrop"></div>
+
   <script>
-    function toggleLiveUpdates() {
-      const popup = document.getElementById('liveUpdatesPopup');
-      popup.classList.toggle('active');
+    // Update the JavaScript for better popup handling
+    function togglePopup(popupId, showBackdrop = true) {
+      const popup = document.getElementById(popupId);
+      const backdrop = document.getElementById('popupBackdrop');
+      const body = document.body;
+
+      if (popup.classList.contains('active')) {
+        // Close popup
+        popup.classList.remove('active');
+        backdrop.classList.remove('active');
+        body.classList.remove('popup-active');
+      } else {
+        // Close any other open popups first
+        document.querySelectorAll('.live-updates-popup.active, .results-popup.active').forEach(p => {
+          p.classList.remove('active');
+        });
+
+        // Open requested popup
+        popup.classList.add('active');
+        if (showBackdrop) {
+          backdrop.classList.add('active');
+          body.classList.add('popup-active');
+        }
+      }
     }
 
-    // Auto-show the popup when page loads
+    function toggleLiveUpdates() {
+      togglePopup('liveUpdatesPopup', true);
+    }
+
+    function toggleResults() {
+      togglePopup('resultsPopup', true);
+    }
+
+    // Close popup when clicking backdrop
+    document.getElementById('popupBackdrop').addEventListener('click', function() {
+      document.querySelectorAll('.live-updates-popup.active, .results-popup.active').forEach(popup => {
+        popup.classList.remove('active');
+      });
+      this.classList.remove('active');
+      document.body.classList.remove('popup-active');
+    });
+
+    // Only show updates popup on load
     window.addEventListener('load', function() {
       setTimeout(function() {
-        document.getElementById('liveUpdatesPopup').classList.add('active');
-      }, 2000); // Show after 2 seconds
+        togglePopup('liveUpdatesPopup', true);
+      }, 2000);
+    });
+
+    // Close popup when pressing escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.live-updates-popup.active, .results-popup.active').forEach(popup => {
+          popup.classList.remove('active');
+        });
+        document.getElementById('popupBackdrop').classList.remove('active');
+        document.body.classList.remove('popup-active');
+      }
     });
   </script>
 </body>
