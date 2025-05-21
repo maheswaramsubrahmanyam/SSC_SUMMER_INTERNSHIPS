@@ -257,6 +257,72 @@
       .ssc-ticker-text { font-size: 0.98rem; }
       .ssc-ticker { height: 32px; }
     }
+    .live-updates-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffd700;
+      color: #3e1863;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .live-updates-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .live-updates-popup {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      z-index: 999;
+      transform: translateY(150%);
+      transition: transform 0.3s ease;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .live-updates-popup.active {
+      transform: translateY(0);
+    }
+
+    .live-updates-popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #3e1863;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .live-updates-popup .close-btn:hover {
+      color: #6a3093;
+    }
+
+    @media (max-width: 400px) {
+      .live-updates-popup {
+        width: calc(100% - 40px);
+        right: 20px;
+        left: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -274,8 +340,59 @@
   <div class="hero">
     <div class="hero-title">SSC SUMMER INTERNSHIPS 2025</div>
     <div class="hero-subtitle">Unlock your potential with real-world projects &amp; official certification</div>
-    <button class="cta-btn" onclick="window.location.href='https://chat.whatsapp.com/Hi4L78evBLV7uzDTFzFiRN'">Join Now</button><br>
+    <button class="cta-btn" onclick="window.location.href='https://chat.whatsapp.com/Hi4L78evBLV7uzDTFzFiRN'">Join Now</button> <br>
     <button  class="cta-btn" onclick="window.location.href='https://forms.gle/DDJzdj8acC37Hf1g7'" >Apply Now</button>
+    
+    <!-- Live Updates Section -->
+    <button class="live-updates-toggle" onclick="toggleLiveUpdates()">
+      <i class="fa-solid fa-bell"></i>
+    </button>
+
+    <div class="live-updates-popup" id="liveUpdatesPopup">
+      <button class="close-btn" onclick="toggleLiveUpdates()">
+        <i class="fa-solid fa-times"></i>
+      </button>
+      <div style="padding: 20px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+          <i class="fa-solid fa-bell" style="color: #ffd700; font-size: 1.8rem;"></i>
+          <h3 style="margin: 0; color: #ffd700; font-size: 1.2rem;">Important Announcement – Selection Process Update</h3>
+        </div>
+        
+        <div style="color: #3e1863;">
+          <h4 style="color: #6a3093; margin-top: 0;">✅ Phase 1: Group Discussion (GD) Round</h4>
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div class="contact-row">
+              <i class="fa-solid fa-calendar"></i>
+              <span><strong>Date:</strong> Today</span>
+            </div>
+            <div class="contact-row">
+              <i class="fa-solid fa-clock"></i>
+              <span><strong>Time:</strong> 5:00 PM</span>
+            </div>
+            <div class="contact-row">
+              <i class="fa-solid fa-video"></i>
+              <span><strong>Mode:</strong> Online (Google Meet)</span>
+            </div>
+            <div style="margin: 15px 0;">
+              <a href="https://meet.google.com/bvt-qqed-qnb" target="_blank" class="cta-btn" style="display: inline-block; text-decoration: none; font-size: 1rem; padding: 12px 24px;">
+                <i class="fa-solid fa-video"></i> Join Google Meet
+              </a>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; text-align: left;">
+            <h4 style="color: #6a3093;">💡 Important Instructions:</h4>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+              <li>Join on time with stable internet and good audio</li>
+              <li>Be respectful and professional</li>
+              <li>Topics will be given during the session</li>
+              <li>Group size: 5 members per discussion</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="internship-types">
       <div class="type-card"><i class="fa-solid fa-code"></i><br>Front End</div>
       <div class="type-card"><i class="fa-solid fa-database"></i><br>Back End</div>
@@ -361,5 +478,19 @@
       ssc summer internship 2025 apply now deadline 25th may 2025  free internship
     </div>
   </div>
+
+  <script>
+    function toggleLiveUpdates() {
+      const popup = document.getElementById('liveUpdatesPopup');
+      popup.classList.toggle('active');
+    }
+
+    // Auto-show the popup when page loads
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('liveUpdatesPopup').classList.add('active');
+      }, 2000); // Show after 2 seconds
+    });
+  </script>
 </body>
 </html>
