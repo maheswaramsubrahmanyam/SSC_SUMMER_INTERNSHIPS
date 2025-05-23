@@ -417,6 +417,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      transition: transform 0.2s ease;
     }
 
     .selected-candidates li:last-child {
@@ -425,6 +426,75 @@
 
     .selected-candidates li i {
       color: #6a3093;
+    }
+
+    .phase-section {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .phase-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .phase-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      padding: 8px 12px;
+      background: #f8f4ff;
+      border-radius: 8px;
+    }
+
+    .phase-title h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .phase-2 .phase-title {
+      background: #6a3093;
+    }
+
+    .phase-2 .phase-title h3,
+    .phase-2 .phase-title i {
+      color: #fff;
+    }
+
+    .selected-candidates li {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+      color: #3e1863;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .phase-2 .selected-candidates li {
+      background: #f8f4ff;
+      border-radius: 8px;
+      margin: 5px 0;
+      border: 1px solid #e8dfff;
+      transform: translateY(0);
+    }
+
+    .phase-2 .selected-candidates li:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(106, 48, 147, 0.1);
+    }
+
+    .phase-2 .selected-candidates li i {
+      color: #6a3093;
+      font-size: 1.1rem;
+    }
+
+    .phase-2 .selected-candidates li:last-child {
+      border-bottom: 1px solid #e8dfff;
     }
 
     @media (max-width: 400px) {
@@ -552,7 +622,7 @@
             </div>
             <div class="contact-row">
               <i class="fa-solid fa-clock"></i>
-              <span><strong>Time:</strong> 6:00 PM</span>
+              <span><strong>Time:</strong> 5:00 PM</span>
             </div>
             <div class="contact-row">
               <i class="fa-solid fa-video"></i>
@@ -569,11 +639,6 @@
             <h4 style="color: #6a3093;">💡 Important Instructions:</h4>
             <ul style="margin: 10px 0; padding-left: 20px;">
               <li>Join on time with stable internet and good audio</li>
-              <li>Join on time using a laptop only (mobile devices are not allowed)</li>
-              <li>Turn on your camera throughout the entire interview</li>
-              <li>Share your full screen for the entire session – transparency is mandatory</li>
-              <li>No cheating or use of AI tools – this is strictly prohibited</li>
-              <li>This interview focuses on your selected domain and core technical skills</li>
               <li>Keep your resume and project details ready</li>
               <li>Be prepared to explain your technical skills and problem-solving approaches</li>
               <li>Interview duration: 20–30 minutes</li>
@@ -692,31 +757,53 @@
       <i class="fa-solid fa-times"></i>
     </button>
     <div style="padding: 20px;">
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-        <i class="fa-solid fa-trophy" style="color: #6a3093; font-size: 1.8rem;"></i>
-        <h3 style="margin: 0; color: #6a3093; font-size: 1.2rem;">Phase-1 Results - Selected Candidates</h3>
-      </div>
-      
-      <div style="color: #3e1863;">
-        <p style="margin: 0 0 15px 0; font-weight: 600;">Congratulations to the following candidates selected for Phase 2:</p>
-        <ul class="selected-candidates">
-          <li><i class="fa-solid fa-user-check"></i> Garuga Sravan Revanth</li>
-          <li><i class="fa-solid fa-user-check"></i> Gopi Reddy Greeshma</li>
-          <li><i class="fa-solid fa-user-check"></i> Sirisha Penky</li>
-          <li><i class="fa-solid fa-user-check"></i> Morampudi Vamsi Tarun</li>
-          <li><i class="fa-solid fa-user-check"></i> Ananda Lakshmi Akula</li>
-          <li><i class="fa-solid fa-user-check"></i> Hari Priya Badduri</li>
-          <li><i class="fa-solid fa-user-check"></i> Busharaths</li>
-          <li><i class="fa-solid fa-user-check"></i> Harsha Priya Vardhani</li>
-          <li><i class="fa-solid fa-user-check"></i> Yoshitha</li>
-          <li><i class="fa-solid fa-user-check"></i> Narla Bhargavi</li>
-          <li><i class="fa-solid fa-user-check"></i> Lasya Mandadapu</li>
-        </ul>
+      <!-- Phase 2 Results Section -->
+      <div class="phase-section phase-2">
+        <div class="phase-title">
+          <i class="fa-solid fa-trophy" style="font-size: 1.4rem;"></i>
+          <h3>Phase-2 Results - Selected Interns</h3>
+        </div>
         
-        <div style="margin-top: 20px; padding: 15px; background: #f8f4ff; border-radius: 8px;">
-          <p style="margin: 0; color: #6a3093; font-weight: 600;">
-            <i class="fa-solid fa-star"></i> Selected candidates will receive further details about Phase 2 via email.
-          </p>
+        <div style="color: #3e1863;">
+          <p style="margin: 0 0 15px 0; font-weight: 600; color: #6a3093;">Congratulations to our selected interns!</p>
+          <ul class="selected-candidates">
+            <li><i class="fa-solid fa-star"></i> ------</li>
+            <li><i class="fa-solid fa-star"></i> ------</li>
+            <li><i class="fa-solid fa-star"></i> ------</li>
+            <li><i class="fa-solid fa-star"></i> ------</li>
+            <li><i class="fa-solid fa-star"></i> ------</li>
+          </ul>
+          
+          <div style="margin-top: 20px; padding: 15px; background: #f0e6ff; border-radius: 8px;">
+            <p style="margin: 0; color: #6a3093; font-weight: 600;">
+              <i class="fa-solid fa-info-circle"></i> Selected interns will receive onboarding details via email.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 1 Results Section -->
+      <div class="phase-section">
+        <div class="phase-title">
+          <i class="fa-solid fa-check-circle" style="color: #6a3093; font-size: 1.4rem;"></i>
+          <h3 style="color: #6a3093;">Phase-1 Results - Selected Candidates</h3>
+        </div>
+        
+        <div style="color: #3e1863;">
+          <p style="margin: 0 0 15px 0; font-weight: 600;">Candidates selected for Phase 2:</p>
+          <ul class="selected-candidates">
+            <li><i class="fa-solid fa-user-check"></i> Garuga Sravan Revanth</li>
+            <li><i class="fa-solid fa-user-check"></i> Gopi Reddy Greeshma</li>
+            <li><i class="fa-solid fa-user-check"></i> Sirisha Penky</li>
+            <li><i class="fa-solid fa-user-check"></i> Morampudi Vamsi Tarun</li>
+            <li><i class="fa-solid fa-user-check"></i> Ananda Lakshmi Akula</li>
+            <li><i class="fa-solid fa-user-check"></i> Hari Priya Badduri</li>
+            <li><i class="fa-solid fa-user-check"></i> Busharaths</li>
+            <li><i class="fa-solid fa-user-check"></i> Harsha Priya Vardhani</li>
+            <li><i class="fa-solid fa-user-check"></i> Yoshitha</li>
+            <li><i class="fa-solid fa-user-check"></i> Narla Bhargavi</li>
+            <li><i class="fa-solid fa-user-check"></i> Lasya Mandadapu</li>
+          </ul>
         </div>
       </div>
     </div>
